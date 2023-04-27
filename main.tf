@@ -77,8 +77,8 @@ data "aws_iam_policy_document" "iam_s3_bucket_policy" {
   }
 }
 
-#resource "aws_s3_bucket_policy" "s3_bucket_policy" {
-#  bucket = aws_s3_bucket.dummy-bucket.id
-#  policy = data.aws_iam_policy_document.iam_s3_bucket_policy.json
-#}
+resource "aws_s3_bucket_policy" "s3_bucket_policy" {
+  bucket = aws_s3_bucket.dummy-bucket.id
+  policy = data.aws_iam_policy_document.iam_s3_bucket_policy.json
+}
 
