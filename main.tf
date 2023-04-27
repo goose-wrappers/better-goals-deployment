@@ -1,6 +1,6 @@
-resource "aws_s3_bucket" "dummy-bucket" {
-  bucket = "delete-me-bucket-2023-04-27"
-}
+#resource "aws_s3_bucket" "dummy-bucket" {
+#  bucket = "delete-me-bucket-2023-04-27"
+#}
 
 resource "aws_cloudfront_origin_access_control" "cloudfront_acl" {
   name                              = "example"
