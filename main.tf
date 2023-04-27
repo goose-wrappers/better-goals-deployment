@@ -29,11 +29,18 @@ resource "aws_s3_bucket" "dummy-bucket" {
 }
 
 
+resource "aws_cloudfront_origin_access_control" "cloudfront_acl" {
+  name                              = "example"
+  description                       = "Example Policy"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
 
 resource "aws_cloudfront_distribution" "dummy_distribution" {
   origin {
     domain_name              = aws_s3_bucket.dummy-bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
     origin_id                = "my_s3_origin"
   }
 
