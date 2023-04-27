@@ -49,6 +49,7 @@ resource "aws_cloudfront_distribution" "dummy_distribution" {
   default_root_object = "index.html"
 
   default_cache_behavior {
+    compress         = true
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "my_s3_origin"
@@ -79,4 +80,33 @@ resource "aws_cloudfront_distribution" "dummy_distribution" {
   }
 }
 
+
+data "aws_iam_policy_document" "iam_s3_bucket_policy" {
+  statement {
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    actions = [
+      "s3:GetObject",
+    ]
+
+    resources = [
+      "${aws_s3_bucket.dummy-bucket.arn}/*",
+    ]
+
+    condition {
+      test     = "ForAnyValue:StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.dummy_distribution.arn]
+    }
+  }
+}
+
+
+resource "aws_s3_bucket_policy" "s3_bucket_policy" {
+  bucket = aws_s3_bucket.dummy-bucket.id
+  policy = data.aws_iam_policy_document.iam_s3_bucket_policy.json
+}
 
