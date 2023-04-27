@@ -67,6 +67,13 @@ resource "aws_cloudfront_distribution" "dummy_distribution" {
     max_ttl                = 86400
   }
 
+  restrictions {
+    geo_restriction {
+      restriction_type = "whitelist"
+      locations        = ["US", "CA", "GB", "DE"]
+    }
+  }
+
   viewer_certificate {
     cloudfront_default_certificate = true
   }
