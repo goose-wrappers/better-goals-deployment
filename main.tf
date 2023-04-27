@@ -11,3 +11,13 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
+
+
+
+
+
+
+resource "aws_s3_bucket" "dummy-bucket" {
+  bucket = "delete-me-bucket-2023-04-27"
+}
