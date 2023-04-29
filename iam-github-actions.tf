@@ -7,8 +7,8 @@ resource "aws_iam_user" "github_actions_iam" {
 data "aws_iam_policy_document" "github_actions_policy_document" {
   statement {
     effect    = "Allow"
-    actions   = ["s3:PutObject", "s3:PutObjectAcl", "s3:ListAllMyBuckets"]
-    resources = [aws_s3_bucket.dummy-bucket.arn]
+    actions   = ["s3:PutObject", "s3:PutObjectAcl"]
+    resources = ["${aws_s3_bucket.dummy-bucket.arn}/*"]
   }
 }
 
