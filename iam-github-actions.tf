@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "github_actions_policy_document" {
 }
 
 resource "aws_iam_user_policy" "github_actions_policy" {
-  name   = "test"
+  name   = "github-actions-policy"
   user   = aws_iam_user.github_actions_iam.name
   policy = data.aws_iam_policy_document.github_actions_policy_document.json
 }
