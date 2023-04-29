@@ -40,6 +40,7 @@ resource "aws_cloudfront_distribution" "dummy_distribution" {
   restrictions {
     geo_restriction {
       restriction_type = "none"
+      locations        = []
     }
   }
 
