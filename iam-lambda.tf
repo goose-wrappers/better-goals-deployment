@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "iam_invoke_function_policy" {
 resource "aws_iam_policy" "policy_for_lambda" {
   name        = "test-policy"
   description = "A test policy"
-  policy      = data.aws_iam_policy_document.iam_invoke_function_policy
+  policy      = data.aws_iam_policy_document.iam_invoke_function_policy.json
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
