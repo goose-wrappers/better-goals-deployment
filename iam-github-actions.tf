@@ -13,6 +13,12 @@ data "aws_iam_policy_document" "github_actions_policy_document" {
 
   statement {
     effect    = "Allow"
+    actions   = ["lambda:CreateFunction", "lambda:UpdateFunction"]
+    resources = ["arn:aws:lambda:::function:better-goals"]
+  }
+
+  statement {
+    effect    = "Allow"
     actions   = ["iam:PassRole"]
     resources = ["*"]
   }
