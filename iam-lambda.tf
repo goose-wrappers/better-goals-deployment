@@ -34,4 +34,5 @@ resource "aws_iam_role" "iam_for_lambda" {
 resource "aws_iam_policy_attachment" "invoke_policy_for_lambda" {
   name       = "invoke_policy_for_lambda"
   policy_arn = data.aws_iam_policy_document.iam_invoke_function_policy.json
+  roles      = [aws_iam_role.iam_for_lambda]
 }
