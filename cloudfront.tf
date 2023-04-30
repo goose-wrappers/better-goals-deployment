@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "iam_s3_bucket_policy" {
     condition {
       test     = "ForAnyValue:StringEquals"
       variable = "AWS:SourceArn"
-      values   = [aws_cloudfront_distribution.dummy_distribution.arn]
+      values   = [aws_cloudfront_distribution.better_goals_distribution.arn]
     }
   }
 }
@@ -34,7 +34,7 @@ resource "aws_cloudfront_origin_access_control" "cloudfront_acl" {
   signing_protocol                  = "sigv4"
 }
 
-resource "aws_cloudfront_distribution" "dummy_distribution" {
+resource "aws_cloudfront_distribution" "better_goals_distribution" {
   origin {
     domain_name              = aws_s3_bucket.better_goals_s3.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
