@@ -9,7 +9,9 @@ data "aws_iam_policy_document" "iam_for_lambda_policy" {
 
     actions = ["sts:AssumeRole"]
   }
+}
 
+data "aws_iam_policy_document" "iam_invoke_function_policy" {
   statement {
     effect = "Allow"
     sid    = "FunctionURLAllowPublicAccess"
@@ -27,4 +29,9 @@ data "aws_iam_policy_document" "iam_for_lambda_policy" {
 resource "aws_iam_role" "iam_for_lambda" {
   name               = "iam_for_lambda"
   assume_role_policy = data.aws_iam_policy_document.iam_for_lambda_policy.json
+}
+
+resource "aws_iam_policy_attachment" "invoke_policy_for_lambda" {
+  name       = "invoke_policy_for_lambda"
+  policy_arn = data.aws_iam_policy_document.iam_invoke_function_policy.json
 }
