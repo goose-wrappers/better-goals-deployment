@@ -13,14 +13,8 @@ data "aws_iam_policy_document" "iam_for_lambda_policy" {
 
 data "aws_iam_policy_document" "iam_invoke_function_policy" {
   statement {
-    effect = "Allow"
-    sid    = "FunctionURLAllowPublicAccess"
-
-    principals {
-      type        = "Service"
-      identifiers = ["lambda.amazonaws.com"]
-    }
-
+    effect    = "Allow"
+    sid       = "FunctionURLAllowPublicAccess"
     actions   = ["lambda:InvokeFunctionUrl"]
     resources = ["*"]
   }
