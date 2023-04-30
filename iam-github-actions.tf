@@ -8,11 +8,11 @@ data "aws_iam_policy_document" "github_actions_policy_document" {
   statement {
     effect    = "Allow"
     actions   = ["s3:PutObject", "s3:PutObjectAcl"]
-    resources = ["${aws_s3_bucket.dummy-bucket.arn}/*"]
+    resources = ["${aws_s3_bucket.better_goals_s3.arn}/*"]
   }
 
   statement {
-    effect = "Allow"
+    effect  = "Allow"
     actions = [
       "lambda:CreateFunction", "lambda:UpdateFunctionCode", "lambda:CreateFunctionUrlConfig", "lambda:AddPermission"
     ]
