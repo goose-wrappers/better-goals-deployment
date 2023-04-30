@@ -12,8 +12,13 @@ data "aws_iam_policy_document" "github_actions_policy_document" {
   }
 
   statement {
-    effect    = "Allow"
-    actions   = ["lambda:CreateFunction", "lambda:UpdateFunctionCode", "lambda:CreateFunctionUrlConfig"]
+    effect  = "Allow"
+    actions = [
+      "lambda:CreateFunction",
+      "lambda:UpdateFunctionCode",
+      "lambda:CreateFunctionUrlConfig",
+      "lambda:AddPermission"
+    ]
     resources = ["*"]
   }
 
