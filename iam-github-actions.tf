@@ -10,12 +10,6 @@ data "aws_iam_policy_document" "github_actions_policy_document" {
     actions   = ["s3:PutObject", "s3:PutObjectAcl"]
     resources = ["${aws_s3_bucket.dummy-bucket.arn}/*"]
   }
-
-  statement {
-    effect    = "Allow"
-    actions   = ["lambda:UpdateFunctionCode"]
-    resources = [aws_lambda_function.lambda_function.arn]
-  }
 }
 
 resource "aws_iam_user_policy" "github_actions_policy" {
