@@ -22,7 +22,8 @@ data "aws_iam_policy_document" "iam_invoke_function_policy" {
   statement {
     actions = ["s3:PutObject", "logs:CreateLogStream", "logs:PutLogEvents"]
     effect  = "Allow"
-    resources = ["arn:aws:s3:::better-goals-canary-results/*",
+    resources = [
+      "arn:aws:s3:::better-goals-canary-output/*",
       "arn:aws:logs:*:*:log-group:/aws/lambda/better-goals:*",
       "arn:aws:logs:*:*:log-group:*:log-stream:*"
     ]
